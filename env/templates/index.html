@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>ToDo App</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='flatly.min.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+<body>
+    <main>
+    <div class="container-fluid" id="wrapper">
+			
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4" id="content">
+                <h2>Texto</h2>
+                
+                <form action="{{ url_for('add_todo') }}" method="POST" role="form">
+                
+                    <div class="form-group">
+                        <div class="input-group">
+                          <textarea name="new-todo" type="text" class="form-control"  aria-label="Todo" aria-describedby="add-btn" id="texto1">
+                          </textarea>
+                            <br>  
+                          <textarea name="new-todo2" type="text" class="form-control"  aria-label="Todo" aria-describedby="add-btn" id="texto2">
+                          </textarea>
+                          <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default" id="add-btn">Agregar</button>
+                          </span>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row t10">
+                    <div class="col-lg-12">
+                        <div class="btn-toolbar">
+                            <div class="btn-group">
+                                <a type="button"  class="btn btn-warning" id="btnprocesar">
+                                    Comparar
+                                </a>
+                            </div>
+                            <!--no funca-->
+<!--
+                            <div class="btn-group">
+                                <a type="button" href="{{ url_for('delete_completed') }}" class="btn btn-warning">
+                                   Eliminar
+                                </a>
+                            </div>
+-->
+                            <div class="btn-group">
+                                <a type="button" href="{{ url_for('delete_all') }}" class="btn btn-warning">
+                                    ELiminar Todo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <ul class="list-group t20">
+                    {% for todo in todos %}
+                        <li class="list-group-item" id="list"> {{ todo.text }} </li>
+                    </a>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </main> 
+        <center>
+            <table id="Table" class="table table-striped"  ></table>
+            </center>
+        
+
+<script type="text/javascript">
+            $("#btnprocesar").click(function() {
+    
+            Table.innerHTML = "";
+    
+                $.ajax({
+                    url: '/ajax-data',
+                    data:{'texto1':document.getElementById('texto1').value,'texto2':document.getElementById('texto2').value} ,
+                    type: 'POST',
+    
+                    success: function(response) {
+                        response = JSON.parse(response);
+                        console.log(response)
+
+                        $("#Table").append('<tr>' +
+                                '<td align="center" style="dislay: none;">texto 1: <br>' + response["texto1"] + '</td>' +
+                                '<td align="center" style="dislay: none;">texto 2: <br>' + response["texto2"] +  '</td>' +
+                                '<td align="center" style="dislay: none;">Jaccard: <br>' + response["valor Jaccard"] +  '</td>'+
+                                '<td align="center" style="dislay: none;">Edit tree : <br>' + response["valor tree_edit"] +  '</td>'+
+                                '<td align="center" style="dislay: none;">Anti Unification : <br>' + response["valor fake_anti_uni"] +  '</td></tr>');
+
+                        /*count = Object.keys(response).length
+    
+                        for (i = 0; i < count; i++) {
+    
+                            $("#Table").append('<tr>' +
+                                '<td align="center" style="dislay: none;">Tweet: <br>' + response[i]["tweet"] + '</td>' +
+                                '<td align="center" style="dislay: none;">textblob: <br>' + response[i]["textblob"] +  '</td>' +
+                                '<td align="center" style="dislay: none;">Jaccard: <br>' + response[i]["jaccard"] +  '</td>' +
+                                '<td align="center" style="dislay: none;">Coceno:<br>' + response[i]["Coceno"] + '</tr>');
+                        }*/
+    
+    
+    
+    
+    
+                    }
+    
+    
+                });
+    
+    
+            });
+</script>
+</body>
+</html>

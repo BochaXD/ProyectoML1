@@ -1,0 +1,46 @@
+body {
+	background: beige;
+	
+}
+#Table{
+	border: 1px solid black;
+	background: white;
+	margin-top: 20px;
+	display: flex;
+	padding: 10px;
+	border-radius: 10px;
+	box-shadow: 2px 2px 5px 5px skyblue;
+	width: 900px;
+
+}
+td{
+	border: 1px solid black;
+	padding: 10px;
+}
+#wrapper {
+	margin-top: 10% !important;
+}
+#content {
+	background: skyblue;
+	border-radius: 10px;
+	padding: 25px;
+}
+#content > h2 {
+	font-size: 18px;
+	text-align: center;
+	padding-top: 0;
+}
+.t10 {
+	margin-top: 10px;
+}
+.t20 {
+	margin-top: 20px;
+}
+.todo-completed {
+	text-decoration: line-through;
+	background: rgba(149, 165, 166, .3);
+}
+footer {
+	margin-top: 20px;
+	color: white;
+}

@@ -1,0 +1,3 @@
+para correr activamos una teminar y escribimos 
+env\Scripts\activate
+y por utimo flask run
