@@ -166,9 +166,9 @@ def code_sim(file_name1, file_name2, method='tree_edit'):
 
 
 print('========jaccard============')
-print(code_sim(r'./archivos/code1.py', r'./archivos/code2.py', 'jaccard'))
-print(code_sim(r'./archivos/code1.py', r'./archivos/code2.py',  'tree_edit'))
-print(code_sim(r'./archivos/code2.py', r'./archivos/code1.py', 'fake_anti_uni'))
+print(code_sim(r'./env/archivos/code1.py', r'./env/archivos/code2.py', 'jaccard'))
+print(code_sim(r'./env/archivos/code1.py', r'./env/archivos/code2.py',  'tree_edit'))
+print(code_sim(r'./env/archivos/code2.py', r'./env/archivos/code1.py', 'fake_anti_uni'))
 
 
 

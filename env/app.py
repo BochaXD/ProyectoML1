@@ -54,17 +54,17 @@ def ajdata():
     texto1 = request.form.get('texto1')
     texto2 = request.form.get('texto2')
     #trasformar texto
-    code1=open('./archivos/code1.py','w')
+    code1=open('./env/archivos/code1.py','w')
     code1.write(texto1)
     code1.close()
     #trasformar texto
-    code2=open('./archivos/code2.py','w')
+    code2=open('./env/archivos/code2.py','w')
     code2.write(texto2)
     code2.close()
     #llama metodos
-    rep=metodos.code_sim(r'./archivos/code1.py', r'./archivos/code2.py', 'jaccard')
-    re=metodos.code_sim(r'./archivos/code1.py', r'./archivos/code2.py', 'tree_edit')
-    r=metodos.code_sim(r'./archivos/code1.py', r'./archivos/code2.py', 'fake_anti_uni')
+    rep=metodos.code_sim(r'./env/archivos/code1.py', r'./env/archivos/code2.py', 'jaccard')
+    re=metodos.code_sim(r'./env/archivos/code1.py', r'./env/archivos/code2.py', 'tree_edit')
+    r=metodos.code_sim(r'./env/archivos/code1.py', r'./env/archivos/code2.py', 'fake_anti_uni')
     tw={'texto1':texto2,'texto2':texto1,"valor Jaccard":rep,"valor tree_edit":re,"valor fake_anti_uni":r}
   
     return json.dumps(tw)
